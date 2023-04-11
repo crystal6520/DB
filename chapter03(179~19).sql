@@ -1,4 +1,4 @@
-/* newbookÅ×ÀÌºí »ı¼º */
+/* newbookí…Œì´ë¸” ìƒì„± */
 
 create table NewBook (
 bookid NUMBER PRIMARY KEY,
@@ -8,7 +8,7 @@ price NUMBER DEFAULT 10000 CHECK(price > 1000));
 
 select * from NewBook;
 
-/* newcustomer Å×ÀÌºí »ı¼º */
+/* newcustomer í…Œì´ë¸” ìƒì„± */
 
 CREATE TABLE NewCustomer (
 custid NUMBER PRIMARY KEY,
@@ -17,7 +17,7 @@ address VARCHAR2(20),
 phone VARCHAR2(30));
 
 
-/* newordersÅ×ÀÌºí »ı¼º */
+/* newordersí…Œì´ë¸” ìƒì„± */
 create table NewOrders(
 orderid NUMBER,
 custid NUMBER NOT NULL,
@@ -28,13 +28,13 @@ PRIMARY KEY(orderid),
 FOREIGN KEY(custid) REFERENCES NewCustomer(custid) ON DELETE CASCADE);
 
 
-/* ¼Ó¼º Ãß°¡ */
+/* ì†ì„± ì¶”ê°€ */
 
 alter table newbook add isbn varchar2(13);
 
 select *from newbook;
 
-/*Á¦¾à»çÇ× º¯°æ */
+/*ì œì•½ì‚¬í•­ ë³€ê²½ */
 
 alter table newbook modify isbn number;
 
@@ -43,23 +43,23 @@ select * from newbook;
 select * from newcustomer;
 select * from neworders;
 
-/*Å×ÀÌºí »èÁ¦ */
+/*í…Œì´ë¸” ì‚­ì œ */
 alter table newbook drop column isbn;
 
 select * from book;
 
-/*Æ©ÇÃ Ãß°¡ */
+/*íŠœí”Œ ì¶”ê°€ */
 
 insert into book(bookid,bookname,publisher,price)
-values(11,'½ºÆ÷Ã÷ ÀÇÇĞ', 'ÇÑ¼ÖÀÇÇĞ¼­Àû',90000);
+values(11,'ìŠ¤í¬ì¸  ì˜í•™', 'í•œì†”ì˜í•™ì„œì ',90000);
 
 insert into book(bookid,bookname,publisher)
-values (14,'½ºÆ÷Ã÷ÀÇÇĞ','ÇÑ¼ÖÀÇÇĞ¼­Àû');
+values (14,'ìŠ¤í¬ì¸ ì˜í•™','í•œì†”ì˜í•™ì„œì ');
 
 
 select * from imported_book;
 
-/*´ë·® »ğÀÔ */
+/*ëŒ€ëŸ‰ ì‚½ì… */
 insert into book(bookid, bookname,price,publisher)
 select bookid, bookname,price,publisher
 from imported_book;
@@ -69,19 +69,19 @@ select * from book;
 
 select * from customer;
 
-/*¾÷µ¥ÀÌÆ®*/
+/*ì—…ë°ì´íŠ¸*/
 
 update customer
-set address='´ëÇÑ¹Î±¹ ºÎ»ê'
+set address='ëŒ€í•œë¯¼êµ­ ë¶€ì‚°'
 where custid=5;
 
 select * from customer;
 
 update customer
-set address=(select address from customer where name ='±è¿¬¾Æ')
-where name='¹Ú¼¼¸®';
+set address=(select address from customer where name ='ê¹€ì—°ì•„')
+where name='ë°•ì„¸ë¦¬';
 
-/*Æ©ÇÃ »èÁ¦*/
+/*íŠœí”Œ ì‚­ì œ*/
 delete from customer
 where custid=5;
 
